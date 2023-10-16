@@ -1,17 +1,19 @@
 variable "tags" {
   type = map
+  default = { Name: "aes-fabfed-instance" }
 }
 
 variable vpc_id {
   type = string
   description = "ID of an existing VPC."
-  default = "vpc-0926e26ef0721bf97"
+  default = "vpc-0c641c70ee2ec1790"
 }
+
 
 variable subnet_id {
   type = string
   description = "ID of an existing subnet"
-  default = "subnet-0a09e8ea837f8606b"
+  default = "subnet-096185b34c183ca1d"
 }
 
 variable "region" {
@@ -19,32 +21,35 @@ variable "region" {
 }
 
 variable "instance_type" {
-  default = "t2.micro" 
+  default = "t2.small" 
 }
 
-// custom ubuntu ami with docker, docker-compose, and python3 installed
+// ubuntu ami to use for fabfed testing
 variable "ami" {
-  default = "ami-01e51d86b60c02297" 
+  default = "ami-051f7e7f6c2f40dc1" 
 }
 
 variable "disk_size" {
   type = number 
   description = "size of disk in Gigabytes"
+  default = 10
 }
 
 variable "public_key_path" {
   type = string 
   description = "path to ssh public key"
+  default = "/tmp/go-ssh.pub"
 }
 
 variable "open_ports" {
   type    = list(number)
+  default = [ 22 ]
 }
 
 variable "use_elastic_ip" {
   type = bool
   description = "whether to use an elastic ip or not"
-  default = true 
+  default = false 
 }
 
 // optional
